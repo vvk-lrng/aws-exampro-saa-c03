@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+if [ -z "$1" ]; then
+    echo "No bucket name provided. Usage: $0 bucket-name"
+    exit 1
+fi
+echo "== CREATING BUCKET =="
+BUCKET_NAME=$1
+#REGION=${2:-us-east-1}
+
+#https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/index.html
+aws s3api create-bucket \
+--bucket "$BUCKET_NAME" \
+--query Location \
+--output text
